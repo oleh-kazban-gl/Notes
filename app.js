@@ -17,7 +17,7 @@ yargs.command({
       demandOption: true,
     },
   },
-  handler: function (argv) {
+  handler(argv) {
     notes.addNote(argv.title, argv.body);
   },
 });
@@ -31,7 +31,7 @@ yargs.command({
       demandOption: true,
     },
   },
-  handler: function (argv) {
+  handler(argv) {
     notes.removeNote(argv.title);
   },
 });
@@ -45,14 +45,14 @@ yargs.command({
       demandOption: true,
     },
   },
-  handler: function (argv) {
+  handler(argv) {
     notes.getNote(argv.title);
   },
 });
 yargs.command({
   command: "list",
   describe: "Show all records",
-  handler: function () {
+  handler() {
     notes.listNotes();
   },
 });
