@@ -1,12 +1,12 @@
 const fs = require("fs");
 const chalk = require("chalk");
 
-function listNotes() {
+const listNotes = () => {
   const notes = loadNotes();
   console.log(notes);
-}
+};
 
-function addNote(title, body) {
+const addNote = (title, body) => {
   const notes = loadNotes();
   const existingNote = _getExistingNote(notes, title);
 
@@ -17,9 +17,9 @@ function addNote(title, body) {
     saveNotes(notes);
     console.log(chalk.green(`A new note has been added: "${title}"`));
   }
-}
+};
 
-function removeNote(title) {
+const removeNote = (title) => {
   const notes = loadNotes();
   const existingNoteIndex = _getExistingNoteIndex(notes, title);
 
@@ -31,9 +31,9 @@ function removeNote(title) {
 
     console.log(chalk.green(`The note: "${title}" was succesfully deleted`));
   }
-}
+};
 
-function getNote(title) {
+const getNote = (title) => {
   const notes = loadNotes();
   const existingNote = _getExistingNote(notes, title);
 
@@ -42,9 +42,9 @@ function getNote(title) {
   } else {
     console.log(chalk.green(JSON.stringify(existingNote)));
   }
-}
+};
 
-function loadNotes() {
+const loadNotes = () => {
   try {
     const dataBuffer = fs.readFileSync("notes.json");
 
@@ -52,21 +52,21 @@ function loadNotes() {
   } catch (e) {
     return [];
   }
-}
+};
 
-function saveNotes(notes) {
+const saveNotes = (notes) => {
   const dataJson = JSON.stringify(notes);
 
   fs.writeFileSync("notes.json", dataJson);
-}
+};
 
-function _getExistingNote(notes, title) {
+const _getExistingNote = (notes, title) => {
   return notes.find((n) => n.title === title);
-}
+};
 
-function _getExistingNoteIndex(notes, title) {
+const _getExistingNoteIndex = (notes, title) => {
   return notes.findIndex((n) => n.title === title);
-}
+};
 
 module.exports = {
   listNotes,
