@@ -3,7 +3,10 @@ const chalk = require("chalk");
 
 const listNotes = () => {
   const notes = loadNotes();
-  console.log(notes);
+
+  notes.forEach((n) => {
+    console.log(n);
+  });
 };
 
 const addNote = (title, body) => {
