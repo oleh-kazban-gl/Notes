@@ -1,53 +1,60 @@
-const chalk = require('chalk');
-const yargs = require('yargs');
+const yargs = require("yargs");
 
-const notes = require('./notes');
+const notes = require("./notes");
 
 yargs.command({
-  command: 'add',
-  describe: 'Add a record',
+  command: "add",
+  describe: "Add a record",
   builder: {
     title: {
-      describe: 'Record title',
-      type: 'string',
-      demandOption: true
+      describe: "Record title",
+      type: "string",
+      demandOption: true,
     },
     body: {
-      describe: 'Record body',
-      type: 'string',
-      demandOption: true
+      describe: "Record body",
+      type: "string",
+      demandOption: true,
     },
   },
   handler: function (argv) {
-    console.log('Adding a record:');
-    console.log(`Title: ${argv.title}`);
-    console.log(`Body: ${argv.body}`);
-  }
+    notes.addNote(argv.title, argv.body);
+  },
 });
 yargs.command({
-  command: 'remove',
-  describe: 'Remove a record',
-  handler: function () {
-    console.log('Removing a record:');
-  }
+  command: "remove",
+  describe: "Remove a record",
+  builder: {
+    title: {
+      describe: "Record title",
+      type: "string",
+      demandOption: true,
+    },
+  },
+  handler: function (argv) {
+    notes.removeNote(argv.title);
+  },
 });
 yargs.command({
-  command: 'read',
-  describe: 'Read a record',
-  handler: function () {
-    console.log('Reading a record:');
-  }
+  command: "read",
+  describe: "Read a record",
+  builder: {
+    title: {
+      describe: "Record title",
+      type: "string",
+      demandOption: true,
+    },
+  },
+  handler: function (argv) {
+    notes.getNote(argv.title);
+  },
 });
 yargs.command({
-  command: 'list',
-  describe: 'Show all records',
+  command: "list",
+  describe: "Show all records",
   handler: function () {
-    console.log('Showing all records:');
-  }
+    notes.listNotes();
+  },
 });
-
-// console.log('process args: ', process.argv);
-// console.log('yargs args: ', yargs.argv);
 
 yargs.parse();
-

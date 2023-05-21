@@ -1,2 +1,0 @@
-Created with NodeJS
-Some appended data
